@@ -1,6 +1,7 @@
 import Head from "next/head"
-import { Children, FC, PropsWithChildren } from "react"
+import {FC, PropsWithChildren } from "react"
 import { Navbar } from '../ui/Navbar';
+import { Grid } from '@nextui-org/react'
 
 
 type Props = {
@@ -24,5 +25,16 @@ export const Layouts: FC<PropsWithChildren<Props>> = ({ children, title }) => {
                 {children}
             </main>
         </>
+    )
+}
+
+
+
+
+export const GridContainerNextUI: FC<PropsWithChildren<Props>> = ({children}) => {
+    return (
+        <Grid.Container gap={1.5} justify={"flex-start"} >
+            {children}
+        </Grid.Container>
     )
 }
