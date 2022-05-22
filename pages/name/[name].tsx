@@ -6,24 +6,21 @@ import { Button, Card, Container, Grid, Image, Text } from '@nextui-org/react';
 import confetti from "canvas-confetti"
 
 import { Layouts } from '../../components/layouts';
-import { Pokemons } from '../../interfaces';
+import { Pokemons, ResponsePokemons } from '../../interfaces';
 import { localStorFavorites } from '../../utils';
 import { getPokemonInfo } from '../../utils';
+import { pokeApi } from '../../api';
 
 interface Props {
   pokemon: Pokemons
 }
 
-const PokemonPage: NextPage<Props> = ({ pokemon }) => {
-  console.log(pokemon.name)
+const PokemonBYName: NextPage<Props> = ({ pokemon }) => {
 
-  const [isInFavorits, setIsInFavorits] = useState(localStorFavorites.ifExistPokeInFavorits(pokemon.id));
+  const [isInFavorits, setIsInFavorits] = useState(localStorFavorites.ifExistPokeInFavorits(pokemon.id))
 
-  
-  
   const favoriteToggle = () => {
-
-    localStorFavorites.ifExistPokeInFavorits(pokemon.id);
+    localStorFavorites.favoriteToggle(pokemon.id);
     setIsInFavorits(!isInFavorits)
 
     /* Returning from the function if the isInFavorits is true. */
@@ -45,8 +42,6 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
 
     }, 250);
   }
-
-  // console.log(router.query)
   return (
     <>
       <Layouts title={`pokemon-${pokemon.name}`}>
@@ -130,16 +125,14 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
 
-
-  /* creo un array de 250 elementos, y luego mapear cada elemento a una cadena del índice + 1*/
-  // constatar primero de cuanto es el limit de la api, ver: pages/pokemon/index.tsx  {getStaticProps}
-  const totalPokemons = [...Array(250)].map((val, i) => `${i + 1}`)
+  const { data } = await pokeApi.get<ResponsePokemons>(`/pokemon?limit=250`)
+  const namesPokemons: string[] = data.results.map(pokemon => pokemon.name)
 
   // console.log(totalPokemons)
 
   return {
-    paths: totalPokemons.map(id => ({
-      params: { id }
+    paths: namesPokemons.map(name => ({
+      params: { name }
     })),
     fallback: false
   }
@@ -147,16 +140,17 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 
-  const { id } = params as { id: string }
+  const { name } = params as { name: string }
+
 
 
 
   return {
     props: {
-      pokemon: await getPokemonInfo(id)
+      pokemon: await getPokemonInfo(name)
     }
   }
 }
 
 
-export default PokemonPage
+export default PokemonBYName
