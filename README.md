@@ -1,5 +1,27 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+proyecto creado en next.js
+
+## Herramientas usadas en este proyecto:
+
+- Next - GetStaticProps
+
+- Next - getStaticPaths
+
+- Multiples componentes de NextUI
+
+- Flex Layout
+
+- Temas de NextUI
+
+- Next _document
+
+- Navegación
+
+- Parámetros por URL
+
+- Parámetros estáticos
+
 ## Getting Started
 
 First, run the development server:
