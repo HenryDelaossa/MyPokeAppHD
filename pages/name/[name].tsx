@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GetStaticProps, NextPage, GetStaticPaths } from 'next';
 import Link from 'next/link';
 
@@ -17,7 +17,11 @@ interface Props {
 
 const PokemonBYName: NextPage<Props> = ({ pokemon }) => {
 
-  const [isInFavorits, setIsInFavorits] = useState(localStorFavorites.ifExistPokeInFavorits(pokemon.id))
+  const [isInFavorits, setIsInFavorits] = useState(false)
+
+  useEffect(()=> {
+    setIsInFavorits(localStorFavorites.ifExistPokeInFavorits(pokemon.id))
+  },[])
 
   const favoriteToggle = () => {
     localStorFavorites.favoriteToggle(pokemon.id);

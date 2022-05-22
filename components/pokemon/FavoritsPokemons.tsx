@@ -9,6 +9,7 @@ interface Props {
 }
 
 export const FavoritsPokemons: FC<Props> = ({ pokemonFavorito }) => {
+
     return (
         <Grid.Container gap={2} direction="row" justify='flex-start'>
             {
