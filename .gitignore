@@ -6,13 +6,6 @@
 /.pnp
 .pnp.js
 
-/next-env.d.ts
-/next.config.js
-/package.json
-/tsconfig.json
-/yarn.lock
-.eslintrc.json
-
 # testing
 /coverage
 
