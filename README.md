@@ -8,6 +8,18 @@ proyecto creado en next.js
 
 - Next - getStaticPaths
 
+- localStorage
+
+- hooks
+
+- redux
+
+- axios
+
+- api
+
+- functional components
+
 - Multiples componentes de NextUI
 
 - Flex Layout
@@ -21,6 +33,18 @@ proyecto creado en next.js
 - Parámetros por URL
 
 - Parámetros estáticos
+
+## funcuinalidades
+
+- conectar a api pokemon
+- generacion de paginas de forma estatica en buildTime
+- pagina de favoritos
+- guardar en favoritos
+- eliminar de favoritos
+- rutas dinamicas
+
+
+
 
 ## Getting Started
 
