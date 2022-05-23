@@ -18,8 +18,8 @@ export const PokemonCards: FC<Props> = ({ pokemons }) => {
 
 
     return (
-        <Grid xs={6} sm={3} md={2} xl={1} key={pokemons.id}>
-            <Card css={{ w: "100%", p: 0, h: "300px" }} bordered hoverable >
+        <Grid xs={12} sm={3} md={2} xl={1} key={pokemons.id}>
+            <Card css={{ w: "100%", p: 0, h: "300px"}} bordered hoverable >
                 <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
                     <Col>
                         <Text size={12} weight="bold" transform="uppercase" color="#9E9E9E">

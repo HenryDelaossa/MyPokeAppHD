@@ -4,6 +4,8 @@ proyecto creado en next.js
 
 ## Herramientas usadas en este proyecto:
 
+- next - incremental static regeneration
+
 - Next - GetStaticProps
 
 - Next - getStaticPaths
@@ -37,7 +39,9 @@ proyecto creado en next.js
 ## funcuinalidades
 
 - conectar a api pokemon
+- cargar mas cards en Home segun se indique con boton 
 - generacion de paginas de forma estatica en buildTime
+- crea pagina de pokemon que no este dentro de los limit 250
 - pagina de favoritos
 - guardar en favoritos
 - eliminar de favoritos

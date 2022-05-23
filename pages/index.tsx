@@ -6,6 +6,8 @@ import { PokemonCards } from '../components/pokemon';
 import { pokeApi } from '../api'
 import { ResponsePokemons, PokemonsSmall } from '../interfaces'
 import { GridContainerNextUI } from '../components/layouts';
+import { useState, useEffect } from 'react';
+import { Button, Container } from '@nextui-org/react';
 
 interface Props {
   pokemons: PokemonsSmall[]
@@ -14,15 +16,26 @@ interface Props {
 
 const Home: NextPage<Props> = ({ pokemons }) => {
 
-  console.log(pokemons)
 
+
+  const [cantToShowAdd, setCantToShowAdd] = useState(20)
+
+  pokemons.slice(0, cantToShowAdd)
+
+  const showMoreCards = () => {
+    setCantToShowAdd(cantToShowAdd + 20)
+  }
 
   return (
     <>
       <Layouts title='Listado de pokemons'>
         <GridContainerNextUI>
-          {pokemons.map(poke => <PokemonCards key={poke.id} pokemons={poke} />)}
+          {pokemons.slice(0, cantToShowAdd).map(poke => <PokemonCards key={poke.id} pokemons={poke} />)}
         </GridContainerNextUI>
+        {cantToShowAdd <= pokemons.length && <Container display='flex' justify='center'>
+          <Button ghost onClick={() => showMoreCards()}>ver mas</Button>
+        </Container>
+        }
       </Layouts>
 
     </>

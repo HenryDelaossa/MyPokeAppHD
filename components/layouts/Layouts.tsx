@@ -22,11 +22,10 @@ export const Layouts: FC<PropsWithChildren<Props>> = ({ children, title }) => {
                 <meta property="og:description" content={`pagina sobre pokemon ${title}`} />
                 <meta property="og:image" content={`${origin}/img/banner.png`} />
             </Head>
-
             <Navbar />
-
             <main style={{
-                padding: "0px 20px"
+                padding: "0px 20px",
+                marginBottom:"2rem"
             }}>
                 {children}
             </main>
