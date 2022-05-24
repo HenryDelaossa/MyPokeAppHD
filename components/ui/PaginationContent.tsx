@@ -82,7 +82,7 @@ export const ContentOptionPagination: FC<Props> = ({ dataArr, intervalo, paginat
                             <Tooltip
                                 color="secondary"
                                 contentColor="invert"
-                                content={pageFromPokemons().some(el => el.id >= dataArr.length) ? "" : "siguiente pagina"}>
+                                content={pageFromPokemons().length < intervalo || pageFromPokemons().some(el => el.id >= dataArr.length) ? "" : "siguiente pagina"}>
                                 <Button
                                     disabled={pageFromPokemons().length < intervalo || pageFromPokemons().some(el => el.id === dataArr.length)}
                                     css={{ margin: "0 30px" }}
