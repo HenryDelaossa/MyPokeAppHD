@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
 import { GetStaticProps, NextPage, GetStaticPaths } from 'next';
-import Link from 'next/link';
 
-import { Button, Card, Container, Grid, Image, Text } from '@nextui-org/react';
-import confetti from "canvas-confetti"
-
-import { Layouts } from '../../components/layouts';
 import { Pokemons } from '../../interfaces';
 import { localStorFavorites } from '../../utils';
 import { getPokemonInfo } from '../../utils';
 import PokemonBYName from '../name/[name]';
+
+import confetti from "canvas-confetti"
 
 interface Props {
   pokemon: Pokemons
@@ -65,8 +62,6 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
   /* creo un array de 250 elementos, y luego mapear cada elemento a una cadena del índice + 1*/
   // constatar primero de cuanto es el limit de la api, ver: pages/pokemon/index.tsx  {getStaticProps}
   const totalPokemons = [...Array(250)].map((val, i) => `${i + 1}`)
-
-  // console.log(totalPokemons)
 
   return {
     paths: totalPokemons.map(id => ({

@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react';
 import { GetStaticProps, NextPage, GetStaticPaths } from 'next';
 import Link from 'next/link';
 
-import { Button, Card, Container, Grid, Image, Text } from '@nextui-org/react';
-import confetti from "canvas-confetti"
-
 import { Layouts } from '../../components/layouts';
+
 import { Pokemons, ResponsePokemons } from '../../interfaces';
 import { localStorFavorites } from '../../utils';
 import { getPokemonInfo } from '../../utils';
 import { pokeApi } from '../../api';
-import { redirect } from 'next/dist/server/api-utils';
+
+import { Button, Card, Container, Grid, Image, Text } from '@nextui-org/react';
+import confetti from "canvas-confetti";
 
 interface Props {
   pokemon: Pokemons
@@ -133,7 +133,6 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
   const { data } = await pokeApi.get<ResponsePokemons>(`/pokemon?limit=250`)
   const namesPokemons: string[] = data.results.map(pokemon => pokemon.name)
 
-  // console.log(totalPokemons)
 
   return {
     paths: namesPokemons.map(name => ({

@@ -8,8 +8,10 @@ import { Grid } from '@nextui-org/react'
 type Props = {
     title?: string
 }
-
 const origin = typeof window === "undefined" ? "" : window.location.origin
+
+
+
 export const Layouts: FC<PropsWithChildren<Props>> = ({ children, title }) => {
     return (
         <>
@@ -17,7 +19,7 @@ export const Layouts: FC<PropsWithChildren<Props>> = ({ children, title }) => {
                 <title>{title || "pokemon-app"}</title>
                 <meta name="author" content="Henry de la ossa" />
                 <meta name="description" content={`Informacion de pokemones, ${title}`} />
-                <meta name="keywords" content={`XXXXX, pokemon, pokedex ${title}`} />
+                <meta name="keywords" content={`pokemon, pokedex ${title}`} />
                 <meta property="og:title" content={`informacion de pokemon ${title}`} />
                 <meta property="og:description" content={`pagina sobre pokemon ${title}`} />
                 <meta property="og:image" content={`${origin}/img/banner.png`} />

@@ -1,13 +1,10 @@
 import type { NextPage, GetStaticProps } from 'next'
 
 import { Layouts } from '../components/layouts';
-import { PokemonCards } from '../components/pokemon';
+import { ContentOptionPagination } from '../components/ui';
 
-import { pokeApi } from '../api'
 import { ResponsePokemons, PokemonsSmall } from '../interfaces'
-import { GridContainerNextUI } from '../components/layouts';
-import { useState, useEffect } from 'react';
-import { Button, Container } from '@nextui-org/react';
+import { pokeApi } from '../api'
 
 interface Props {
   pokemons: PokemonsSmall[]
@@ -16,31 +13,18 @@ interface Props {
 
 const Home: NextPage<Props> = ({ pokemons }) => {
 
-
-
-  const [cantToShowAdd, setCantToShowAdd] = useState(20)
-
-  pokemons.slice(0, cantToShowAdd)
-
-  const showMoreCards = () => {
-    setCantToShowAdd(cantToShowAdd + 20)
-  }
-
   return (
     <>
       <Layouts title='Listado de pokemons'>
-        <GridContainerNextUI>
-          {pokemons.slice(0, cantToShowAdd).map(poke => <PokemonCards key={poke.id} pokemons={poke} />)}
-        </GridContainerNextUI>
-        {cantToShowAdd <= pokemons.length && <Container display='flex' justify='center'>
-          <Button ghost onClick={() => showMoreCards()}>ver mas</Button>
-        </Container>
-        }
+        <ContentOptionPagination pagination dataArr={pokemons} intervalo={24} />        
       </Layouts>
 
     </>
   )
 }
+
+
+
 
 // You should use getStaticProps when:
 //- The data required to render the page is available at build time ahead of a user’s request.
@@ -52,7 +36,6 @@ const Home: NextPage<Props> = ({ pokemons }) => {
 export const getStaticProps: GetStaticProps = async (ctx) => {
 
   const { data } = await pokeApi.get<ResponsePokemons>("/pokemon?limit=250")
-  // console.log(data.results)
 
   const pokemons: PokemonsSmall[] = data.results.map((pok, i) => (
     Object.assign(pok, { id: i + 1 }, { img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${i + 1}.svg` })

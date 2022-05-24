@@ -1,6 +1,7 @@
-import { Link, Spacer, Text, useTheme } from "@nextui-org/react"
-import Image from "next/image"
 import NextLink from "next/link"
+import Image from "next/image"
+
+import { Link, Spacer, Text, useTheme } from "@nextui-org/react"
 
 export const Navbar = () => {
     const { theme } = useTheme()
@@ -13,7 +14,8 @@ export const Navbar = () => {
             justifyContent: "start",
             width: "100%",
             padding: "0px 20px",
-            backgroundColor: theme?.colors.gray100.value
+            backgroundColor: theme?.colors.gray100.value,
+            marginBottom:"3rem"
         }}>
             <Image
                 src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
